@@ -1,0 +1,17 @@
+kube_resource_configmaps:
+  env-configmap: "{{ lookup('template', kube_resource_template_dir + 'env-configmap.yml') | from_yaml }}"
+kube_resource_secrets:
+  env-secrets: "{{ lookup('template', kube_resource_template_dir + 'env-secrets.yml') | from_yaml }}"
+kube_resource_manifest_files: "{{ query('fileglob', kube_resource_template_dir + '*manifest.yml') }}"
+container_image: willthames/docker-debug
+container_registry: ""
+image_pull_policy: Always
+kube_service_backend_port: 5000
+kube_service_port: 80
+docker_debug_database_password: !vault |
+  $ANSIBLE_VAULT;1.1;AES256
+  38663934326666646361653932663535643739636430383166633436626432383261333162356534
+  3261346635623763306631396166346332376263306564390a303462623762383434333264346434
+  66333032393364323836343331323230656465636334363132626265653937656434633166313465
+  3431663738353339360a373333373366613935373364303837353161633466393164653163383134
+  6636
