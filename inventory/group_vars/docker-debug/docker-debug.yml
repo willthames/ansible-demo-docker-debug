@@ -3,8 +3,8 @@ kube_resource_configmaps:
 kube_resource_secrets:
   env-secrets: "{{ lookup('template', kube_resource_template_dir + 'env-secrets.yml') | from_yaml }}"
 kube_resource_manifest_files: "{{ query('fileglob', kube_resource_template_dir + '*manifest.yml') }}"
-container_image: willthames/docker-debug
-container_registry: ""
+image_name: willthames/docker-debug
+image_registry: ""
 image_pull_policy: Always
 kube_service_backend_port: 5000
 kube_service_port: 80
